@@ -1,7 +1,7 @@
 import './style.css';
 
 // Crear carrousel imgs
-function cambiarFotoPrincipal(idMiniatura: string): void {
+/* function cambiarFotoPrincipal(idMiniatura: string): void {
   const fotoPrincipal = document.querySelector('#foto-principal');
   const miniatura = document.getElementById(idMiniatura);
   if (
@@ -47,3 +47,30 @@ if (
     cambiarFotoPrincipal('miniatura4');
   });
 }
+ */
+
+/* ************************************************************************** */
+
+function mostrarTurno(classTurno) {
+  //Turno
+  let turno1 = document.getElementById('turno1').innerHTML;
+
+  console.log(turno6);
+}
+//Todos los turnos disponibles
+const turno2 = document.getElementById('turno2');
+const turno3 = document.getElementById('turno3');
+const turno4 = document.getElementById('turno4');
+const turno5 = document.getElementById('turno5');
+const turno6 = document.getElementById('turno6');
+const turno7 = document.getElementById('turno7');
+const turno8 = document.getElementById('turno8');
+const turno9 = document.getElementById('turno9');
+const turno10 = document.getElementById('turno10');
+mostrarTurno(turno2);
+
+//Btn turno anterior
+//const btnPrev = document.querySelector('.btn_prev');
+//Btn turno posterior
+//const btnNext = document.querySelector('.btn_next');
+//btnNext.addEventListener('click', mostrarTurno('turno1'));
