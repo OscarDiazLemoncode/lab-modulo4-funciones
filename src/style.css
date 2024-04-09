@@ -1,3 +1,7 @@
+:root {
+  font-family: system-ui;
+}
+
 .turno-display {
   display: flex;
   flex-direction: column;
@@ -25,8 +29,20 @@
 /*  */
 .flex {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  gap: 1rem;
 }
-.numero-turno:not(.turno_main) {
-  display: none;
+.pa50 {
+  padding: 50px;
+}
+button[type='button'] {
+  flex: 0.2 0 auto;
+  padding: 50px;
+  border-radius: 20px;
+  border: none;
+  font-size: 1.5rem;
+}
+button[type='button']:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 16px #00000014;
 }

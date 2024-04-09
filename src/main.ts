@@ -51,26 +51,46 @@ if (
 
 /* ************************************************************************** */
 
-function mostrarTurno(classTurno) {
-  //Turno
-  let turno1 = document.getElementById('turno1').innerHTML;
+// Valor inicial del contador
+let numeroTurno = 0;
 
-  console.log(turno6);
+// Turno display
+const displayTurno = document.querySelector('.numero-turno');
+
+// Botones
+
+// Btn prev
+const bntPrev = document.querySelector('.btn_prev');
+// Btn reset
+const bntReset = document.querySelector('.btn_reset');
+// Btn next
+const bntNext = document.querySelector('.btn_next');
+
+// Función restar turno
+function restarTurno() {
+  numeroTurno--;
+
+  numeroTurno < 0
+    ? alert('¿Desde cuando existe un turno negativo?')
+    : (displayTurno.innerHTML = numeroTurno);
 }
-//Todos los turnos disponibles
-const turno2 = document.getElementById('turno2');
-const turno3 = document.getElementById('turno3');
-const turno4 = document.getElementById('turno4');
-const turno5 = document.getElementById('turno5');
-const turno6 = document.getElementById('turno6');
-const turno7 = document.getElementById('turno7');
-const turno8 = document.getElementById('turno8');
-const turno9 = document.getElementById('turno9');
-const turno10 = document.getElementById('turno10');
-mostrarTurno(turno2);
+// Función reset turno
+function resetTurno() {
+  numeroTurno = 0;
+  displayTurno.innerHTML = numeroTurno;
+}
 
-//Btn turno anterior
-//const btnPrev = document.querySelector('.btn_prev');
-//Btn turno posterior
-//const btnNext = document.querySelector('.btn_next');
-//btnNext.addEventListener('click', mostrarTurno('turno1'));
+// Función añadir turno
+function sumarTurno() {
+  numeroTurno++;
+  displayTurno.innerHTML = numeroTurno;
+}
+
+// Evento click en btn pre
+bntPrev.addEventListener('click', restarTurno);
+
+// Evento click en btn reset
+bntReset.addEventListener('click', resetTurno);
+
+// Evento click en btn next
+bntNext.addEventListener('click', sumarTurno);
