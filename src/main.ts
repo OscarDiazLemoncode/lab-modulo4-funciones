@@ -51,14 +51,14 @@ if (
 
 /* ************************************************************************** */
 
-// Valor inicial del contador
+// Valor inicial
 let numeroTurno = 0;
 
 // Mensaje turno
-let mensajeTurno = document.querySelector('.texto-turno');
+let mensajeTurno = document.querySelector('.texto-turno') as HTMLElement;
 
 // Turno display
-const displayTurno = document.querySelector('.numero-turno');
+let displayTurno = document.querySelector('.numero-turno')!;
 
 // Btn prev
 const bntPrev = document.querySelector('.btn_prev');
@@ -73,32 +73,30 @@ function restarTurno() {
   numeroTurno--;
   // Invalidamos turnos negativos
   numeroTurno < 0
-    ? alert('¿Desde cuando existe un turno negativo?')
-    : (displayTurno.innerHTML = numeroTurno);
+    ? alert('No se puede poner un turno negativo')
+    : (displayTurno.innerHTML = numeroTurno.toString());
 }
 // Función reset turno
 function resetTurno() {
   // Reseteamos turno
   numeroTurno = 0;
   // Mostramos turnos
-  displayTurno.innerHTML = numeroTurno;
-  mensajeTurno.style.visibility = 'hidden';
+  displayTurno!.innerHTML = numeroTurno.toString();
+  mensajeTurno!.style.visibility = 'hidden';
 }
 
 // Función añadir turno
 function sumarTurno() {
+  // Incrementa turno
   numeroTurno++;
   // Mostrar turno
-  displayTurno.innerHTML = numeroTurno;
-  mensajeTurno.style.visibility = 'visible';
+  displayTurno!.innerHTML = numeroTurno.toString();
+  mensajeTurno!.style.visibility = 'visible';
 }
 
-// Verificamos que display turno no es null
-if (displayTurno !== null) {
-  // Evento click en btn pre
-  bntPrev.addEventListener('click', restarTurno);
-  // Evento click en btn reset
-  bntReset.addEventListener('click', resetTurno);
-  // Evento click en btn next
-  bntNext.addEventListener('click', sumarTurno);
-}
+// click en btn pre
+bntPrev!.addEventListener('click', restarTurno);
+// click en btn reset
+bntReset!.addEventListener('click', resetTurno);
+// click en btn next
+bntNext!.addEventListener('click', sumarTurno);
