@@ -71,17 +71,21 @@ const bntNext = document.querySelector('.btn_next');
 function restarTurno() {
   //Restamos turno
   numeroTurno--;
+  // Número turno parseado
+  let parseNumTurno = numeroTurno.toString();
   // Invalidamos turnos negativos
   numeroTurno < 0
     ? alert('No se puede poner un turno negativo')
-    : (displayTurno.innerHTML = numeroTurno.toString());
+    : (displayTurno.innerHTML = parseNumTurno.padStart(2, '0'));
 }
 // Función reset turno
 function resetTurno() {
   // Reseteamos turno
   numeroTurno = 0;
+  // Número turno parseado
+  let parseNumTurno = numeroTurno.toString();
   // Mostramos turnos
-  displayTurno!.innerHTML = numeroTurno.toString();
+  displayTurno!.innerHTML = parseNumTurno.padStart(2, '0');
   mensajeTurno!.style.visibility = 'hidden';
 }
 
@@ -89,8 +93,10 @@ function resetTurno() {
 function sumarTurno() {
   // Incrementa turno
   numeroTurno++;
+  // Número turno parseado
+  let parseNumTurno = numeroTurno.toString();
   // Mostrar turno
-  displayTurno!.innerHTML = numeroTurno.toString();
+  displayTurno!.innerHTML = parseNumTurno.padStart(2, '0');
   mensajeTurno!.style.visibility = 'visible';
 }
 
