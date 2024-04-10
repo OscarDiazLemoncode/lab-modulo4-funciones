@@ -66,6 +66,13 @@ const bntPrev = document.querySelector('.btn_prev');
 const bntReset = document.querySelector('.btn_reset');
 // Btn next
 const bntNext = document.querySelector('.btn_next');
+// Btn next
+const bntTurnoPersonalizado = document.querySelector('.btn_turnoPersonalizado');
+
+// Input turno personalizado
+const numPersonalizado = (document.querySelector(
+  '#numPersonalizado'
+) as HTMLInputElement)!;
 
 // Función restar turno
 function restarTurno() {
@@ -100,9 +107,19 @@ function sumarTurno() {
   mensajeTurno!.style.visibility = 'visible';
 }
 
+// Funcion turno personalizado
+function turnoPersonalizado() {
+  displayTurno!.innerHTML = numPersonalizado.value;
+  mensajeTurno!.style.visibility = 'visible';
+  console.log(numPersonalizado);
+}
+turnoPersonalizado();
+
 // click en btn pre
 bntPrev!.addEventListener('click', restarTurno);
 // click en btn reset
 bntReset!.addEventListener('click', resetTurno);
 // click en btn next
 bntNext!.addEventListener('click', sumarTurno);
+// click en btn turno personalizado
+bntTurnoPersonalizado!.addEventListener('click', turnoPersonalizado);

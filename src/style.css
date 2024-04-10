@@ -49,3 +49,14 @@ button[type='button']:hover {
 .texto-turno {
   visibility: hidden;
 }
+.fx_column {
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  & input[type='number'] {
+    height: 50px;
+    text-align: center;
+  }
+}
