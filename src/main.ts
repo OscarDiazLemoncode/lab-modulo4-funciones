@@ -1,56 +1,5 @@
 import './style.css';
 
-// Crear carrousel imgs
-/* function cambiarFotoPrincipal(idMiniatura: string): void {
-  const fotoPrincipal = document.querySelector('#foto-principal');
-  const miniatura = document.getElementById(idMiniatura);
-  if (
-    fotoPrincipal !== null &&
-    fotoPrincipal !== undefined &&
-    miniatura !== null &&
-    miniatura !== undefined
-  ) {
-    if (
-      fotoPrincipal instanceof HTMLImageElement &&
-      miniatura instanceof HTMLImageElement
-    ) {
-      fotoPrincipal.src = miniatura.src;
-      fotoPrincipal.alt = miniatura.alt;
-    }
-  }
-}
-
-const miniatura1 = document.querySelector('#miniatura1');
-const miniatura2 = document.querySelector('#miniatura2');
-const miniatura3 = document.querySelector('#miniatura3');
-const miniatura4 = document.querySelector('#miniatura4');
-if (
-  miniatura1 !== null &&
-  miniatura1 !== undefined &&
-  miniatura2 !== null &&
-  miniatura2 !== undefined &&
-  miniatura3 !== null &&
-  miniatura3 !== undefined &&
-  miniatura4 !== null &&
-  miniatura4 !== undefined
-) {
-  miniatura1.addEventListener('click', () => {
-    cambiarFotoPrincipal('miniatura1');
-  });
-  miniatura2.addEventListener('click', () => {
-    cambiarFotoPrincipal('miniatura2');
-  });
-  miniatura3.addEventListener('click', () => {
-    cambiarFotoPrincipal('miniatura3');
-  });
-  miniatura4.addEventListener('click', () => {
-    cambiarFotoPrincipal('miniatura4');
-  });
-}
- */
-
-/* ************************************************************************** */
-
 // Valor inicial
 let numeroTurno = 0;
 
@@ -59,6 +8,7 @@ let mensajeTurno = document.querySelector('.texto-turno') as HTMLElement;
 
 // Turno display
 let displayTurno = document.querySelector('.numero-turno')!;
+let numeroTurnoToString = numeroTurno.toString();
 
 // Btn prev
 const bntPrev = document.querySelector('.btn_prev');
@@ -67,53 +17,67 @@ const bntReset = document.querySelector('.btn_reset');
 // Btn next
 const bntNext = document.querySelector('.btn_next');
 // Btn next
-const bntTurnoPersonalizado = document.querySelector('.btn_turnoPersonalizado');
+const bntTurnoPersonalizado = document.querySelector(
+  '.btn_turnoPersonalizado'
+)!;
+
+//Mostramos turno
+displayTurno.innerHTML = numeroTurnoToString.padStart(2, '0');
 
 // Input turno personalizado
 const numPersonalizado = (document.querySelector(
   '#numPersonalizado'
 ) as HTMLInputElement)!;
 
-// Función restar turno
-function restarTurno() {
-  //Restamos turno
-  numeroTurno--;
-  // Número turno parseado
-  let parseNumTurno = numeroTurno.toString();
-  // Invalidamos turnos negativos
-  numeroTurno < 0
-    ? alert('No se puede poner un turno negativo')
-    : (displayTurno.innerHTML = parseNumTurno.padStart(2, '0'));
-}
+// Función restar turno evaluando primero el valor actual
+const restarTurno = () => {
+  let valorActual = displayTurno.innerHTML;
+  let valorActualParse = parseInt(valorActual);
+
+  if (valorActualParse !== 0) {
+    valorActualParse--;
+    let resultadoToString = valorActualParse.toString();
+    displayTurno.innerHTML = resultadoToString.padStart(2, '0');
+    mensajeTurno!.style.visibility = 'visible';
+    numPersonalizado.value = '';
+  } else {
+    alert('¿Desde cuando existen turnos negativos??');
+  }
+};
 // Función reset turno
-function resetTurno() {
-  // Reseteamos turno
-  numeroTurno = 0;
-  // Número turno parseado
-  let parseNumTurno = numeroTurno.toString();
-  // Mostramos turnos
-  displayTurno!.innerHTML = parseNumTurno.padStart(2, '0');
+const resetTurno = () => {
+  let valorActual = displayTurno.innerHTML;
+  // Valor actual display parseado
+  let valorActualParse = parseInt(valorActual);
+  valorActualParse = 0;
+  let resultadoToString = valorActualParse.toString();
+  // Mostramos resultado final con dos dígitos
+  displayTurno.innerHTML = resultadoToString.padStart(2, '0');
   mensajeTurno!.style.visibility = 'hidden';
-}
-
+};
 // Función añadir turno
-function sumarTurno() {
-  // Incrementa turno
-  numeroTurno++;
-  // Número turno parseado
-  let parseNumTurno = numeroTurno.toString();
-  // Mostrar turno
-  displayTurno!.innerHTML = parseNumTurno.padStart(2, '0');
+const sumarTurno = () => {
+  let valorActual = displayTurno.innerHTML;
+  let valorActualParse = parseInt(valorActual);
+  valorActualParse++;
+  let resultadoToString = valorActualParse.toString();
+  displayTurno.innerHTML = resultadoToString.padStart(2, '0');
   mensajeTurno!.style.visibility = 'visible';
-}
+  numPersonalizado.value = '';
+};
 
+// Activar botón añadir turno cuando se escribe en el input
+numPersonalizado.addEventListener('keyup', () => {
+  console.log('input');
+  bntTurnoPersonalizado.removeAttribute('disabled');
+});
 // Funcion turno personalizado
-function turnoPersonalizado() {
-  displayTurno!.innerHTML = numPersonalizado.value;
+const turnoPersonalizado = () => {
+  const valTurnoPersonalizado = numPersonalizado.value;
+  displayTurno!.innerHTML = valTurnoPersonalizado.padStart(2, '0');
   mensajeTurno!.style.visibility = 'visible';
-  console.log(numPersonalizado);
-}
-turnoPersonalizado();
+  numPersonalizado.value = '';
+};
 
 // click en btn pre
 bntPrev!.addEventListener('click', restarTurno);
