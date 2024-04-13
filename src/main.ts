@@ -68,7 +68,6 @@ const sumarTurno = () => {
 
 // Activar botón añadir turno cuando se escribe en el input
 numPersonalizado.addEventListener('keyup', () => {
-  console.log('input');
   bntTurnoPersonalizado.removeAttribute('disabled');
 });
 // Funcion turno personalizado
