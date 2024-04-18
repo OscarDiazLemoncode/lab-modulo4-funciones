@@ -46,9 +46,7 @@ button[type='button']:hover {
   cursor: pointer;
   box-shadow: 0px 0px 16px #00000014;
 }
-.texto-turno {
-  visibility: hidden;
-}
+
 .fx_column {
   gap: 2rem;
   display: flex;

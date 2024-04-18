@@ -1,88 +1,116 @@
 import './style.css';
 
 // Valor inicial
-let numeroTurno = 0;
+let numeroInicial = 1;
 
-// Mensaje turno
-let mensajeTurno = document.querySelector('.texto-turno') as HTMLElement;
-
-// Turno display
-let displayTurno = document.querySelector('.numero-turno')!;
-let numeroTurnoToString = numeroTurno.toString();
-
-// Btn prev
-const bntPrev = document.querySelector('.btn_prev');
-// Btn reset
-const bntReset = document.querySelector('.btn_reset');
-// Btn next
+// Btn siguiente turno
 const bntNext = document.querySelector('.btn_next');
-// Btn next
-const bntTurnoPersonalizado = document.querySelector(
-  '.btn_turnoPersonalizado'
-)!;
+// Btn anterior turno
+const bntPrev = document.querySelector('.btn_prev');
+// Btn resetear turno
+const btnReset = document.querySelector('.btn_reset');
+// Btn turno personalizado
+const btnTurnoPersonalizado = document.querySelector('.btn_turnoPersonalizado');
 
-//Mostramos turno
-displayTurno.innerHTML = numeroTurnoToString.padStart(2, '0');
+let texto = document.querySelector('.texto-turno');
+const mostrarTexto = () => {
+  texto !== null && texto !== undefined && texto instanceof HTMLParagraphElement
+    ? (texto.textContent = 'Por favor, acérquese al mostrador')
+    : console.error('No se puede mostrar el texto');
+};
 
-// Input turno personalizado
-const numPersonalizado = (document.querySelector(
-  '#numPersonalizado'
-) as HTMLInputElement)!;
-
-// Función restar turno evaluando primero el valor actual
-const restarTurno = () => {
-  let valorActual = displayTurno.innerHTML;
-  let valorActualParse = parseInt(valorActual);
-
-  if (valorActualParse !== 0) {
-    valorActualParse--;
-    let resultadoToString = valorActualParse.toString();
-    displayTurno.innerHTML = resultadoToString.padStart(2, '0');
-    mensajeTurno!.style.visibility = 'visible';
-    numPersonalizado.value = '';
+let turno = document.querySelector('.numero-turno');
+const pintarTurno = () => {
+  if (
+    turno !== null &&
+    turno !== undefined &&
+    turno instanceof HTMLHeadingElement
+  ) {
+    turno.textContent = numeroInicial.toString().padStart(2, '0');
   } else {
-    alert('¿Desde cuando existen turnos negativos??');
+    console.error('No se ha podido mostrar el turno');
   }
 };
-// Función reset turno
-const resetTurno = () => {
-  let valorActual = displayTurno.innerHTML;
-  // Valor actual display parseado
-  let valorActualParse = parseInt(valorActual);
-  valorActualParse = 0;
-  let resultadoToString = valorActualParse.toString();
-  // Mostramos resultado final con dos dígitos
-  displayTurno.innerHTML = resultadoToString.padStart(2, '0');
-  mensajeTurno!.style.visibility = 'hidden';
-};
-// Función añadir turno
-const sumarTurno = () => {
-  let valorActual = displayTurno.innerHTML;
-  let valorActualParse = parseInt(valorActual);
-  valorActualParse++;
-  let resultadoToString = valorActualParse.toString();
-  displayTurno.innerHTML = resultadoToString.padStart(2, '0');
-  mensajeTurno!.style.visibility = 'visible';
-  numPersonalizado.value = '';
+
+const añadirTurno = () => {
+  numeroInicial++;
+  pintarTurno();
 };
 
-// Activar botón añadir turno cuando se escribe en el input
-numPersonalizado.addEventListener('keyup', () => {
-  bntTurnoPersonalizado.removeAttribute('disabled');
-});
-// Funcion turno personalizado
+const restarTurno = () => {
+  numeroInicial--;
+  numeroInicial > 0
+    ? pintarTurno()
+    : alert('No se puede poner un turno menor que 0');
+};
+
+const resetearTurno = () => {
+  numeroInicial = 1;
+  pintarTurno();
+};
+
+let valorTurnoPersonalizado = document.querySelector('#numPersonalizado');
 const turnoPersonalizado = () => {
-  const valTurnoPersonalizado = numPersonalizado.value;
-  displayTurno!.innerHTML = valTurnoPersonalizado.padStart(2, '0');
-  mensajeTurno!.style.visibility = 'visible';
-  numPersonalizado.value = '';
+  if (
+    valorTurnoPersonalizado !== null &&
+    valorTurnoPersonalizado !== undefined &&
+    valorTurnoPersonalizado instanceof HTMLInputElement &&
+    turno !== null &&
+    turno !== undefined &&
+    turno instanceof HTMLHeadingElement
+  ) {
+    numeroInicial = parseInt(valorTurnoPersonalizado.value);
+    if (!isNaN(numeroInicial)) {
+      turno.textContent = numeroInicial.toString().padStart(2, '0');
+      valorTurnoPersonalizado.value = '';
+    } else {
+      console.log('no es numero');
+    }
+  } else {
+    console.log('no hay turno personalizado');
+  }
 };
 
-// click en btn pre
-bntPrev!.addEventListener('click', restarTurno);
-// click en btn reset
-bntReset!.addEventListener('click', resetTurno);
-// click en btn next
-bntNext!.addEventListener('click', sumarTurno);
-// click en btn turno personalizado
-bntTurnoPersonalizado!.addEventListener('click', turnoPersonalizado);
+// Funcion eventos
+const eventos = () => {
+  // Btn next
+  bntNext !== null &&
+  bntNext !== undefined &&
+  bntNext instanceof HTMLButtonElement
+    ? bntNext?.addEventListener('click', añadirTurno)
+    : console.error('No se ha encontrado el botón de añadir turno');
+
+  //Btn Prev
+  bntPrev !== null &&
+  bntPrev !== undefined &&
+  bntPrev instanceof HTMLButtonElement
+    ? bntPrev?.addEventListener('click', restarTurno)
+    : console.error('No se ha encontrado el botón de anterior turno');
+
+  //Btn reset
+  btnReset !== null &&
+  btnReset !== undefined &&
+  btnReset instanceof HTMLButtonElement
+    ? btnReset?.addEventListener('click', resetearTurno)
+    : console.error('No se ha encontrado el botón de resetear turno');
+
+  //Btn reset
+  btnReset !== null &&
+  btnReset !== undefined &&
+  btnReset instanceof HTMLButtonElement
+    ? btnReset?.addEventListener('click', resetearTurno)
+    : console.error('No se ha encontrado el botón de restar turno');
+
+  //Btn turno personalizado
+  btnTurnoPersonalizado !== null &&
+  btnTurnoPersonalizado !== undefined &&
+  btnTurnoPersonalizado instanceof HTMLButtonElement
+    ? btnTurnoPersonalizado?.addEventListener('click', turnoPersonalizado)
+    : console.error('No se ha encontrado el botón personalizado');
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  eventos();
+  pintarTurno();
+  mostrarTexto();
+});
