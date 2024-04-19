@@ -11,6 +11,7 @@ const bntPrev = document.querySelector('.btn_prev');
 const btnReset = document.querySelector('.btn_reset');
 // Btn turno personalizado
 const btnTurnoPersonalizado = document.querySelector('.btn_turnoPersonalizado');
+btnTurnoPersonalizado?.setAttribute('disabled', 'true');
 
 const mostrarTexto = () => {
   let texto = document.querySelector('.texto-turno');
