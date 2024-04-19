@@ -12,8 +12,8 @@ const btnReset = document.querySelector('.btn_reset');
 // Btn turno personalizado
 const btnTurnoPersonalizado = document.querySelector('.btn_turnoPersonalizado');
 
-let texto = document.querySelector('.texto-turno');
 const mostrarTexto = () => {
+  let texto = document.querySelector('.texto-turno');
   texto !== null && texto !== undefined && texto instanceof HTMLParagraphElement
     ? (texto.textContent = 'Por favor, acérquese al mostrador')
     : console.error('No se puede mostrar el texto');
@@ -107,6 +107,11 @@ const eventos = () => {
   btnTurnoPersonalizado instanceof HTMLButtonElement
     ? btnTurnoPersonalizado?.addEventListener('click', turnoPersonalizado)
     : console.error('No se ha encontrado el botón personalizado');
+
+  //Btn disabled hasta evento keyup en input turno personalizado
+  valorTurnoPersonalizado?.addEventListener('keyup', () => {
+    btnTurnoPersonalizado?.removeAttribute('disabled');
+  });
 };
 
 document.addEventListener('DOMContentLoaded', () => {
