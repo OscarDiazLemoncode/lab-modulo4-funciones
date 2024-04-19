@@ -21,15 +21,9 @@ const mostrarTexto = () => {
 
 let turno = document.querySelector('.numero-turno');
 const pintarTurno = () => {
-  if (
-    turno !== null &&
-    turno !== undefined &&
-    turno instanceof HTMLHeadingElement
-  ) {
-    turno.textContent = numeroInicial.toString().padStart(2, '0');
-  } else {
-    console.error('No se ha podido mostrar el turno');
-  }
+  turno !== null && turno !== undefined && turno instanceof HTMLHeadingElement
+    ? (turno.textContent = numeroInicial.toString().padStart(2, '0'))
+    : console.error('No se ha podido mostrar el turno');
 };
 
 const añadirTurno = () => {
@@ -94,13 +88,6 @@ const eventos = () => {
     ? btnReset?.addEventListener('click', resetearTurno)
     : console.error('No se ha encontrado el botón de resetear turno');
 
-  //Btn reset
-  btnReset !== null &&
-  btnReset !== undefined &&
-  btnReset instanceof HTMLButtonElement
-    ? btnReset?.addEventListener('click', resetearTurno)
-    : console.error('No se ha encontrado el botón de restar turno');
-
   //Btn turno personalizado
   btnTurnoPersonalizado !== null &&
   btnTurnoPersonalizado !== undefined &&
@@ -115,7 +102,7 @@ const eventos = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  mostrarTexto();
   eventos();
   pintarTurno();
-  mostrarTexto();
 });
